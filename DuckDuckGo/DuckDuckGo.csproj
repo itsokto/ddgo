@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>9</LangVersion>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/itsokto/ddgo</RepositoryUrl>
+        <Version>0.1.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Refit" Version="6.0.24" />
+    </ItemGroup>
+
+</Project>

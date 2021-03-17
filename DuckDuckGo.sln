@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckDuckGo", "DuckDuckGo\DuckDuckGo.csproj", "{075E7016-6C6A-4308-AA0C-115CA294F222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckDuckGo.Tests", "DuckDuckGo.Tests\DuckDuckGo.Tests.csproj", "{912A7F99-628A-4B24-8942-9072535FCA4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{075E7016-6C6A-4308-AA0C-115CA294F222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075E7016-6C6A-4308-AA0C-115CA294F222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075E7016-6C6A-4308-AA0C-115CA294F222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075E7016-6C6A-4308-AA0C-115CA294F222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912A7F99-628A-4B24-8942-9072535FCA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912A7F99-628A-4B24-8942-9072535FCA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912A7F99-628A-4B24-8942-9072535FCA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912A7F99-628A-4B24-8942-9072535FCA4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
