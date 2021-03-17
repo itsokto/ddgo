@@ -17,6 +17,7 @@ namespace DuckDuckGo
 		Task<string> GetRawPageAsync([AliasAs("q")] string query, CancellationToken cancellationToken = default);
 
 		[Get("/{**next}&vqd={vqd}")]
+		[QueryUriFormat(UriFormat.Unescaped)]
 		Task<DuckResponse<T>> NextAsync<T>(string next, string vqd, CancellationToken cancellationToken = default);
 	}
 }
