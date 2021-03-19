@@ -5,7 +5,7 @@
         <LangVersion>9</LangVersion>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/itsokto/ddgo</RepositoryUrl>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
