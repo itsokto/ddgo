@@ -32,18 +32,33 @@ namespace DuckDuckGo
 		}
 
 		public static async Task<DuckResponse<DuckImage>> GetImagesAsync(this IDuckApi api,
-		                                                                 string query,
-		                                                                 DuckSearchFilter duckSearchFilter = DuckSearchFilter.Off,
-		                                                                 CancellationToken cancellationToken = default)
+																		 string query,
+																		 DuckSearchFilter duckSearchFilter = DuckSearchFilter.Off,
+																		 CancellationToken cancellationToken = default)
 		{
 			var vqd = await GetTokenAsync(api, query, cancellationToken).ConfigureAwait(false);
 			return await api.GetImagesAsync(query, vqd, duckSearchFilter, cancellationToken).ConfigureAwait(false);
 		}
 
 		public static Task<DuckResponse<T>> NextAsync<T>(this IDuckApi api,
-		                                                 DuckResponse<T> response,
-		                                                 CancellationToken cancellationToken = default)
+														 DuckResponse<T> response,
+														 CancellationToken cancellationToken = default)
 		{
+			if (response == null)
+			{
+				throw new ArgumentNullException(nameof(response));
+			}
+
+			if (string.IsNullOrWhiteSpace(response.Next))
+			{
+				throw new ArgumentException("Value can't be null or empty.", nameof(response.Next));
+			}
+
+			if (string.IsNullOrWhiteSpace(response.Vqd))
+			{
+				throw new ArgumentException("Value can't be null or empty.", nameof(response.Vqd));
+			}
+
 			return api.NextAsync<T>(response.Next, response.Vqd, cancellationToken);
 		}
 	}

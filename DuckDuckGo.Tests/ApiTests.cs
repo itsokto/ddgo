@@ -17,7 +17,7 @@ namespace DuckDuckGo.Tests
 			var html = ReadFile("get_token_car.html");
 
 			MockHttp.Expect(HttpMethod.Get, "/")
-			        .Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
+					.Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
 
 			var token = await DuckApi.GetTokenAsync("car");
 
@@ -30,7 +30,7 @@ namespace DuckDuckGo.Tests
 			var html = ReadFile("get_token_car_without_vqd.html");
 
 			MockHttp.Expect(HttpMethod.Get, "/")
-			        .Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
+					.Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
 
 			await Assert.ThrowsAsync<InvalidOperationException>(() => DuckApi.GetTokenAsync("car"));
 		}
@@ -42,9 +42,9 @@ namespace DuckDuckGo.Tests
 			var json = ReadFile("get_images_car.json");
 
 			MockHttp.Expect(HttpMethod.Get, "/")
-			        .Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
+					.Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
 			MockHttp.Expect(HttpMethod.Get, "/i.js")
-			        .Respond(HttpStatusCode.OK, new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json));
+					.Respond(HttpStatusCode.OK, new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json));
 
 			var response = await DuckApi.GetImagesAsync("car");
 
@@ -62,17 +62,27 @@ namespace DuckDuckGo.Tests
 			var json = ReadFile("get_images_car.json");
 
 			MockHttp.Expect(HttpMethod.Get, "/")
-			        .Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
+					.Respond(HttpStatusCode.OK, new StringContent(html, Encoding.UTF8, MediaTypeNames.Text.Html));
 			MockHttp.Expect(HttpMethod.Get, "/i.js")
-			        .Respond(HttpStatusCode.OK, new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json));
+					.Respond(HttpStatusCode.OK, new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json));
 			MockHttp.Expect(HttpMethod.Get, "/i.js")
-			        .Respond(HttpStatusCode.OK, new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json));
+					.Respond(HttpStatusCode.OK, new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json));
 
 			var response = await DuckApi.GetImagesAsync("car");
 			var nextResponse = await DuckApi.NextAsync(response);
 
 			Assert.NotNull(nextResponse);
 			Assert.NotEmpty(nextResponse.Results);
+		}
+
+		[Fact]
+		public async Task NextThrowsArgumentExceptionTest()
+		{
+			MockHttp.Expect(HttpMethod.Get, "/i.js")
+					.Respond(HttpStatusCode.OK, new StringContent(string.Empty, Encoding.UTF8, MediaTypeNames.Application.Json));
+
+			var response = new DuckResponse<DuckImage> { Next = null, Vqd = null };
+			await Assert.ThrowsAsync<ArgumentException>(() => DuckApi.NextAsync(response));
 		}
 	}
 }
